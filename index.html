@@ -7,16 +7,13 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      min-height: 100vh;
       background: #0a0a0f;
       color: #e0e0e0;
       font-family: 'Segoe UI', system-ui, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .bg {
@@ -33,6 +30,7 @@
       inset: 0;
       z-index: 0;
       overflow: hidden;
+      pointer-events: none;
     }
 
     .particle {
@@ -51,12 +49,17 @@
       100% { transform: translateY(-10vh) translateX(50px); opacity: 0; }
     }
 
-    .container {
+    /* ── HERO ── */
+    .hero {
       position: relative;
       z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 2rem;
-      max-width: 900px;
     }
 
     .logo {
@@ -94,10 +97,7 @@
       line-height: 1.7;
     }
 
-    .tagline span {
-      color: #c084fc;
-      font-weight: 600;
-    }
+    .tagline span { color: #c084fc; font-weight: 600; }
 
     .btn {
       display: inline-block;
@@ -128,9 +128,7 @@
       flex-wrap: wrap;
     }
 
-    .stat {
-      text-align: center;
-    }
+    .stat { text-align: center; }
 
     .stat-num {
       font-size: 2rem;
@@ -161,13 +159,178 @@
       color: #a855f7;
       margin-bottom: 1.5rem;
     }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: #475569;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+      text-decoration: none;
+    }
+
+    .scroll-hint svg { opacity: 0.5; }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #e0e0e0, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: #475569;
+      font-size: 1rem;
+      margin-bottom: 3.5rem;
+      letter-spacing: 1px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 12px 40px rgba(168, 85, 247, 0.15);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #e0e0e0;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      line-height: 1.9;
+    }
+
+    .about-text strong { color: #c084fc; }
+
+    /* ── CONTACT ── */
+    #contact {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem 8rem;
+      text-align: center;
+    }
+
+    .contact-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      background: rgba(168, 85, 247, 0.06);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 24px;
+      padding: 3rem 4rem;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    .contact-box p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      color: #a855f7;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: #1e293b;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
   </style>
 </head>
 <body>
   <div class="bg"></div>
   <div class="particles" id="particles"></div>
 
-  <div class="container">
+  <!-- HERO -->
+  <section class="hero">
     <div class="badge">✦ Nouvelle génération</div>
     <div class="logo">ANIS</div>
     <div class="version">Version 2.0</div>
@@ -175,7 +338,7 @@
       Une expérience <span>nouvelle génération</span>.<br/>
       Conçu pour aller plus loin, plus vite, plus haut.
     </p>
-    <a href="#" class="btn">Découvrir →</a>
+    <a href="#features" class="btn">Découvrir →</a>
 
     <div class="stats">
       <div class="stat">
@@ -191,7 +354,77 @@
         <div class="stat-label">Dédicace</div>
       </div>
     </div>
-  </div>
+
+    <a href="#features" class="scroll-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+      Défiler
+    </a>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2 class="section-title">Ce que propose ANIS 2.0</h2>
+    <p class="section-sub">Tout ce dont tu as besoin, réuni en un seul endroit</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Performance maximale</div>
+        <div class="card-desc">Conçu pour être rapide, fluide et réactif. Zéro compromis sur la vitesse d'exécution.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">Design soigné</div>
+        <div class="card-desc">Une interface pensée dans les moindres détails pour une expérience visuelle premium.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Fiable & sécurisé</div>
+        <div class="card-desc">Construit sur des bases solides. Tout est maîtrisé de bout en bout.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">Toujours en évolution</div>
+        <div class="card-desc">La version 2.0 n'est que le début. De nouvelles fonctionnalités arrivent en continu.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌐</div>
+        <div class="card-title">Accessible partout</div>
+        <div class="card-desc">Disponible depuis n'importe quel appareil, n'importe où dans le monde.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <div class="card-title">Pensé pour toi</div>
+        <div class="card-desc">Chaque décision de conception a été prise avec une seule chose en tête : toi.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">À propos</h2>
+    <p class="about-text">
+      <strong>ANIS 2.0</strong> est bien plus qu'un projet — c'est une vision.<br/><br/>
+      Né d'une ambition de créer quelque chose de <strong>différent</strong>, de <strong>marquant</strong>,
+      et de <strong>durable</strong>. Chaque ligne de code, chaque pixel, chaque décision reflète
+      une seule philosophie : <strong>faire les choses bien, ou ne pas les faire.</strong>
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div style="display:flex;justify-content:center;margin-top:2rem;">
+      <div class="contact-box">
+        <p>Tu as une question, une idée ou tu veux collaborer ?</p>
+        <a href="mailto:anismessaoud05@gmail.com" class="btn">Envoyer un message →</a>
+        <a href="https://github.com/aanniixss/ANIS2.0" target="_blank" class="btn-outline">Voir sur GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 ANIS 2.0 — Tous droits réservés</footer>
 
   <script>
     const container = document.getElementById('particles');
